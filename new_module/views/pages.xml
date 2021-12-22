@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Courses Page === -->
+    <template id="courses_page_template">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <h2>All Courses:</h2>
+                </div>
+                <div class="container">
+                    <t t-foreach="courses" t-as="course">
+                        <div t-field="course.name"/>
+                    </t>
+                </div>
+
+                <!-- === Snippets' area === -->
+                <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+    <record id="courses_page" model="website.page">
+        <field name="name">Courses page</field>
+        <field name="website_published">True</field>
+        <field name="url">/my/courses</field>
+        <field name="view_id" ref="courses_page_template"/>
+    </record>
+
+    <!-- === Teachers Page === -->
+    <template id="teachers_page_template">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <h2>All Teachers:</h2>
+                </div>
+                <div class="container">
+                    <t t-foreach="teachers" t-as="teacher">
+                        <div>
+                            <span t-field="teacher.name"/>
+                            <span t-field="teacher.teacher_surname"/>
+                        </div>
+                    </t>
+                </div>
+
+                <!-- === Snippets' area === -->
+                <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+    <record id="teachers_page" model="website.page">
+        <field name="name">Teachers page</field>
+        <field name="website_published">True</field>
+        <field name="url">/my/teachers</field>
+        <field name="view_id" ref="teachers_page_template"/>
+    </record>
+
+    <!-- === Students Page === -->
+    <template id="students_page_template">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <h2>All Students:</h2>
+                </div>
+                <div class="container">
+                    <t t-foreach="students" t-as="student">
+                        <div>
+                            <span t-field="student.name"/>
+                            <span t-field="student.student_surname"/>
+                        </div>
+                    </t>
+                </div>
+
+                <!-- === Snippets' area === -->
+                <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+
+    <record id="students_page" model="website.page">
+        <field name="name">Students page</field>
+        <field name="website_published">True</field>
+        <field name="url">/my/students</field>
+        <field name="view_id" ref="students_page_template"/>
+    </record>
+
+</odoo>
