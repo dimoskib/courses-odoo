@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Customize post-header  -->
+    <template id="custom_message" inherit_id="website.layout" name="Custom Header">
+        <!-- Add an element after the top menu  -->
+        <xpath expr="//div[@id='wrapwrap']/header" position="before">
+            <div class="container">
+                <h1 class="courses_header">Welcome to courses</h1>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_courses" name="Show Courses" inherit_id="portal.portal_my_home"
+              customize_show="True" priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Courses</t>
+                <t t-set="url" t-value="'/my/courses'"/>
+<!--                <t t-set="placeholder_count" t-value="7"/>-->
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_teachers" name="Show Teachers" inherit_id="portal.portal_my_home"
+              customize_show="True" priority="40">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Teachers</t>
+                <t t-set="url" t-value="'/my/teachers'"/>
+<!--                <t t-set="placeholder_count" t-value="7"/>-->
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_students" name="Show Students" inherit_id="portal.portal_my_home"
+              customize_show="True" priority="50">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Students</t>
+                <t t-set="url" t-value="'/my/students'"/>
+<!--                <t t-set="placeholder_count" t-value="7"/>-->
+            </t>
+        </xpath>
+    </template>
+</odoo>

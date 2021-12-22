@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="custom_snippet-options" inherit_id="website.snippet_options">
+        <xpath expr="." position="inside">
+                <div data-selector="section,[class^='col-md']">
+                    <we-select string="Custom options">
+                        <we-button data-select-class="new">New</we-button>
+                        <we-button data-select-class="custom">Custom</we-button>
+                        <we-button data-select-class="none">None</we-button>
+                    </we-select>
+                </div>
+        </xpath>
+    </template>
+
+</odoo>

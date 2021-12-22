@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <data>
+        <template id="_assets_primary_variables" name="My SCSS variables"
+                  inherit_id="website._assets_primary_variables">
+            <xpath expr="link[last()]" position="after">
+                <link rel="stylesheet" type="text/scss" href="/new_module/static/scss/primary_variables.scss"/>
+            </xpath>
+        </template>
+
+        <!--
+                <template id="listing">
+                  <ul>
+                    <li t-foreach="objects" t-as="object">
+                      <a t-attf-href="#{ root }/objects/#{ object.id }">
+                        <t t-esc="object.display_name"/>
+                      </a>
+                    </li>
+                  </ul>
+                </template>
+                <template id="object">
+                  <h1><t t-esc="object.display_name"/></h1>
+                  <dl>
+                    <t t-foreach="object._fields" t-as="field">
+                      <dt><t t-esc="field"/></dt>
+                      <dd><t t-esc="object[field]"/></dd>
+                    </t>
+                  </dl>
+                </template>
+        -->
+    </data>
+</odoo>
