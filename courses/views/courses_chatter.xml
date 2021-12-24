@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="courses_chatter_form_view" model="ir.ui.view">
+        <field name="name">course.course.form</field>
+        <field name="model">course.course</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="row tm_row">
+                        <div class="col-lg-12 col-12">
+                            <t t-call="portal.message_thread">
+                                <t t-set="object" t-value="courses"/>
+                            </t>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+        <!-- Add chatter and followers widget -->
+        <div class="oe_chatter">
+            <!-- Followers view -->
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <!-- Chatter view -->
+            <field name="message_ids" widget="mail_thread"/>
+        </div>
+    </record>
+</odoo>

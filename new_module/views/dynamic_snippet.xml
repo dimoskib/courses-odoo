@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="snippet_course_dynamic" name="Dynamic Courses">
+        <section class="course_list">
+            <div class="container">
+                <h2>Some Courses</h2>
+                <table class="table course_snippet table-striped">
+                    <tr>
+                        <th>Name</th>
+                        <th>Teacher</th>
+                        <th>Course semester</th>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </template>
+
+    <template id="course_snippets_options" inherit_id="website.snippets">
+        <!-- register snippet -->
+        <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="new_module.snippet_course_dynamic"
+               t-thumbnail="/new_module/static/src/img/ui/snippet_thumb.jpg"/>
+        </xpath>
+        <xpath expr="//div[@id='snippet_options']" position="inside">
+            <div data-selector=".course_snippet">
+                <we-select string="Table Style">
+                    <we-button data-select-class="table-striped">
+                        Striped
+                    </we-button>
+                    <we-button data-select-class="table-dark">
+                        Dark
+                    </we-button>
+                    <we-button data-select-class="table-bordered">
+                        Bordered
+                    </we-button>
+                </we-select>
+                <we-button-group string="No of Courses" data-attribute-name="numberOfCourses">
+                    <we-button data-select-data-attribute="5">
+                        5
+                    </we-button>
+                    <we-button data-select-data-attribute="10">
+                        10
+                    </we-button>
+                    <we-button data-select-data-attribute="15">
+                        15
+                    </we-button>
+                </we-button-group>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="." position="inside">
+            <script src="/new_module/static/src/js/snippets.js" type="text/javascript"/>
+        </xpath>
+    </template>
+
+</odoo>

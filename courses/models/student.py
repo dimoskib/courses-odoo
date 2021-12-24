@@ -1,5 +1,6 @@
 from odoo import api, fields, models
 from datetime import datetime
+from odoo.exceptions import ValidationError
 
 
 class CourseStudent(models.Model):
@@ -56,9 +57,10 @@ class CourseStudent(models.Model):
                 if index_number.split('/')[1] != enrollment_year:
                     record.student_index_number = str(index_number.split('/')[0]) + '/' + enrollment_year
 
-    @api.model
-    def insert_portal(self):
-        print('Student Portal')
-
-    # def print_report(self):
-    #     return self.env.ref('courses.report_student_card').report_action(self)
+    @api.constrains('student_email')
+    def check_student_email(self):
+        for record in self:
+            duplicate = self.env['course.student'].search([
+                ('student_email', '=', record.student_email), ('id', '!=', record.id)])
+            if duplicate:
+                raise ValidationError(("%s : This email already exists." % record.student_email))

@@ -2,7 +2,8 @@
 {
     'name': "Courses theme",
     'summary': """""",
-    'description': """A theme for teachers in courses""",
+    'description': """A theme for teachers in courses""",  # 'views/courses_chatter.xml',
+
     'author': "Bobo",
     'website': "http://www.yourcompany.com",
     # Categories can be used to filter modules in modules listing
@@ -23,6 +24,8 @@
         'views/snippets.xml',
         'views/options.xml',
         'views/sidebar.xml',
+        'views/dynamic_snippet.xml',
+        # 'views/courses_chatter.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -1,95 +1,154 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <!-- === Courses Page === -->
+    <template id="portal_all_courses" name="My Courses">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
 
-    <!-- === Services Page === -->
-    <record id="courses_page" model="website.page">
-        <field name="name">Courses page</field>
-        <field name="type">qweb</field>
-        <field name="arch" type="xml">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="container">
-                        <t t-foreach="courses" t-as="course">
-                            <div t-field="course.name"/>
-                        </t>
-                    </div>
-                    <!-- === Snippets' area === -->
-                    <div class="oe_structure"/>
-                </div>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Courses</t>
             </t>
-        </field>
+            <t t-if="not courses">
+                <p>There are currently no courses for your account.</p>
+            </t>
+            <t t-if="courses" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Course name #</th>
+                        <th>Course Start Date</th>
+                        <th class='d-none d-md-table-cell'>Course End Date</th>
+                        <th class="text-right">Course Teacher</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="courses" t-as="course">
+                        <tr>
+                            <td>
+                                <span t-field="course.name"/>
+                            </td>
+                            <td>
+                                <span t-field="course.course_start_date"/>
+                            </td>
+                            <td class='d-none d-md-table-cell'>
+                                <span t-field="course.course_end_date"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="course.course_teacher_name"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <record id="courses_page" model="website.page">
+        <field name="name">All Courses</field>
+        <field name="website_published">True</field>
+        <field name="url">/my/courses</field>
+        <field name="view_id" ref="portal_all_courses"/>
     </record>
 
-    <record id="courses_page_link" model="website.menu">
-        <field name="name">Courses</field>
-<!--        <field name="url">/my/courses</field>-->
-        <field name="page_id" ref="courses_page"/>
-        <field name="parent_id" ref="website.main_menu"/>
-        <field name="sequence" type="int">20</field>
-    </record>
+    <!-- === Teachers Page === -->
+    <template id="portal_all_teachers" name="My Courses">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
 
-    <record id="teachers_page" model="website.page">
-        <field name="name">Teachers page</field>
-        <field name="type">qweb</field>
-        <field name="arch" type="xml">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="container">
-                        <h2>All Teachers:</h2>
-                    </div>
-                    <div class="container">
-                        <t t-foreach="teachers" t-as="teacher">
-                            <div>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Teachers</t>
+            </t>
+            <t t-if="not teachers">
+                <p>There are currently no teachers for your account.</p>
+            </t>
+            <t t-if="teachers" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Teacher's name</th>
+                        <th class='d-none d-md-table-cell'>Teacher's email</th>
+                        <th class="text-right">Teacher's courses</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="teachers" t-as="teacher">
+                        <tr>
+                            <td>
                                 <span t-field="teacher.name"/>
                                 <span t-field="teacher.teacher_surname"/>
-                            </div>
-                        </t>
-                    </div>
-                    <!-- === Snippets' area === -->
-                    <div class="oe_structure"/>
-                </div>
+                            </td>
+                            <td class='d-none d-md-table-cell'>
+                                <span t-field="teacher.teacher_email"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="teacher.teacher_courses"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
             </t>
-        </field>
+        </t>
+    </template>
+    <record id="teachers_page" model="website.page">
+        <field name="name">All Teachers</field>
+        <field name="website_published">True</field>
+        <field name="url">/my/teachers</field>
+        <field name="view_id" ref="portal_all_teachers"/>
     </record>
 
-    <record id="teachers_page_link" model="website.menu">
-        <field name="name">Teachers</field>
-<!--        <field name="url">/my/teachers</field>-->
-        <field name="page_id" ref="teachers_page"/>
-        <field name="parent_id" ref="website.main_menu"/>
-        <field name="sequence" type="int">30</field>
-    </record>
+    <!-- === Students Page === -->
+    <template id="portal_all_students" name="All Students">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
 
-    <record id="students_page" model="website.page">
-        <field name="name">Students page</field>
-        <field name="type">qweb</field>
-        <field name="arch" type="xml">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="container">
-                        <h2>All Students:</h2>
-                    </div>
-                    <div class="container">
-                        <t t-foreach="students" t-as="student">
-                            <div>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Students</t>
+            </t>
+            <t t-if="not students">
+                <p>There are currently no students for your account.</p>
+            </t>
+            <t t-if="students" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Student name</th>
+                        <th>Student birthday</th>
+                        <th class='d-none d-md-table-cell'>Student email</th>
+                        <th class="text-right">Student index</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="students" t-as="student">
+                        <tr>
+                            <td>
                                 <span t-field="student.name"/>
                                 <span t-field="student.student_surname"/>
-                            </div>
-                        </t>
-                    </div>
-                    <!-- === Snippets' area === -->
-                    <div class="oe_structure"/>
-                </div>
+                            </td>
+                            <td>
+                                <span t-field="student.student_birth_date"/>
+                            </td>
+                            <td class='d-none d-md-table-cell'>
+                                <span t-field="student.student_email"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="student.student_index_number"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
             </t>
-        </field>
+        </t>
+    </template>
+
+    <record id="students_page" model="website.page">
+        <field name="name">All Students</field>
+        <field name="website_published">True</field>
+        <field name="url">/my/students</field>
+        <field name="view_id" ref="portal_all_students"/>
     </record>
 
-    <record id="students_page_link" model="website.menu">
-        <field name="name">Students</field>
-<!--        <field name="url">/my/students</field>-->
-        <field name="page_id" ref="students_page"/>
-        <field name="parent_id" ref="website.main_menu"/>
-        <field name="sequence" type="int">40</field>
+    <record id="my_courses_page" model="website.page">
+        <field name="name">My Courses</field>
+        <field name="website_published">True</field>
+        <field name="url">/my/my_courses</field>
+        <field name="view_id" ref="courses_page_template"/>
     </record>
 
 </odoo>

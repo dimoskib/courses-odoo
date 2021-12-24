@@ -19,8 +19,9 @@
         'views/teacher.xml',
         'views/student.xml',
         'views/grades.xml',
-        'report/report.xml',
+        # 'views/courses_chatter.xml',
 
+        'report/report.xml',
         'report/course_card.xml',
         'report/student_card.xml'
     ],

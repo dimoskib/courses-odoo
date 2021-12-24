@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import base64
 from odoo import http
+from odoo.http import request
 
 
 # from werkzeug.utils import redirect
@@ -12,12 +13,26 @@ from odoo import http
 class AllCourses(http.Controller):
 
     @http.route('/my/courses', type='http', auth='public', website=True)
-    def show_custom_page(self, **kw):
+    def show_custom_page(self):
         courses = http.request.env['course.course'].search([])
         values = {
             'courses': courses,
         }
-        return http.request.render('new_module.courses_page', values)
+        return http.request.render('new_module.portal_all_courses', values)
+
+    @http.route('/my/my_courses', type='http', auth='public', website=True)
+    def show_my_courses(self):
+        courses = http.request.env['course.course'].search([])
+        users_email = request.env.user.email
+        student_id = http.request.env['course.student'].search([('student_email', '=', users_email)]).id
+        html_result = '<html><body><ul>'
+        for course in courses:
+            if student_id in course.students_in_course.ids:
+                html_result += "<li> <b>%s</b> </li>" % course.name
+            else:
+                html_result += "<li> %s </li>" % course.name
+        html_result += '</ul></body></html>'
+        return html_result
 
 
 class AllTeachers(http.Controller):
@@ -28,7 +43,7 @@ class AllTeachers(http.Controller):
         values = {
             'teachers': teachers,
         }
-        return http.request.render('new_module.teachers_page', values)
+        return http.request.render('new_module.portal_all_teachers', values)
 
 
 class AllStudents(http.Controller):
@@ -39,7 +54,7 @@ class AllStudents(http.Controller):
         values = {
             'students': students,
         }
-        return http.request.render('new_module.students_page', values)
+        return http.request.render('new_module.portal_all_students', values)
 
 #     @route(['/dashboard'], type='http', auth='user', website=False)
 #     def dashboard(self, **post):
