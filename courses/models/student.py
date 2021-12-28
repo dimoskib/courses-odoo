@@ -64,3 +64,6 @@ class CourseStudent(models.Model):
                 ('student_email', '=', record.student_email), ('id', '!=', record.id)])
             if duplicate:
                 raise ValidationError(("%s : This email already exists." % record.student_email))
+
+    def print_report(self):
+        return self.env.ref('courses.report_student_card').report_action(self)

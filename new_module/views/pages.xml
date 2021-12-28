@@ -1,5 +1,83 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+
+    <!-- ===My Courses Page === -->
+    <template id="portal_my_courses" name="My Courses">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Courses</t>
+                <t>
+                    <button model="course.student" name="print_report" string="Print Grades" type="object" class="btn-info">Print Grades
+                    </button>
+                    <button name="share_grades" string="Share Grades" type="object" class="btn-info">Share Grades
+                    </button>
+                </t>
+            </t>
+            <t t-if="not courses">
+                <p>There are currently no courses for your account.</p>
+            </t>
+            <t t-if="courses" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Course name</th>
+                        <th>Course Start Date</th>
+                        <th class='d-none d-md-table-cell'>Course End Date</th>
+                        <th class="text-right">Course Teacher</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="courses" t-as="course">
+                        <tr>
+                            <td>
+                                <span t-field="course.name"/>
+                            </td>
+                            <td>
+                                <span t-field="course.course_start_date"/>
+                            </td>
+                            <td class='d-none d-md-table-cell'>
+                                <span t-field="course.course_end_date"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="course.course_teacher_name"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <record id="my_courses_page" model="website.page">
+        <field name="name">My Courses</field>
+        <field name="website_published">True</field>
+        <field name="url">/my/my_courses</field>
+        <field name="view_id" ref="portal_my_courses"/>
+    </record>
+
+<!--    <div class="collapse navbar-collapse" id="o_portal_navbar_content">-->
+<!--        <div class="nav flex-column flex-lg-row ml-auto p-0 mb-3 mb-lg-0 mt-1 mt-lg-0">-->
+<!--            <div t-if="searchbar_groupby" class="form-inline ml-lg-2">-->
+<!--                <span class="small mr-1 navbar-text">Group By:</span>-->
+<!--                <div class="btn-group">-->
+<!--                    <button id="portal_searchbar_groupby" data-toggle="dropdown"-->
+<!--                            class="btn btn-secondary btn-sm dropdown-toggle">-->
+<!--                        <t t-esc="searchbar_groupby[groupby].get('label', 'None')"/>-->
+<!--                    </button>-->
+<!--                    <div class="dropdown-menu" aria-labelledby="portal_searchbar_groupby">-->
+<!--                        <t t-foreach="searchbar_groupby" t-as="option">-->
+<!--                            <a t-att-href="default_url + '?' + keep_query('*', groupby=option)"-->
+<!--                               t-attf-class="dropdown-item#{groupby == option and ' active' or ''}">-->
+<!--                                <span t-esc="searchbar_groupby[option].get('label')"/>-->
+<!--                            </a>-->
+<!--                        </t>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
     <!-- === Courses Page === -->
     <template id="portal_all_courses" name="My Courses">
         <t t-call="portal.portal_layout">
@@ -14,7 +92,7 @@
             <t t-if="courses" t-call="portal.portal_table">
                 <thead>
                     <tr class="active">
-                        <th>Course name #</th>
+                        <th>Course name</th>
                         <th>Course Start Date</th>
                         <th class='d-none d-md-table-cell'>Course End Date</th>
                         <th class="text-right">Course Teacher</th>
@@ -79,7 +157,9 @@
                                 <span t-field="teacher.teacher_email"/>
                             </td>
                             <td class="text-right">
-                                <span t-field="teacher.teacher_courses"/>
+                                <t t-foreach="teacher.teacher_courses" t-as="course">
+                                    <span t-field="course.name"/>
+                                </t>
                             </td>
                         </tr>
                     </t>

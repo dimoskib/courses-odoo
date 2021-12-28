@@ -55,8 +55,8 @@
                                 states="finished" class="oe_highlight"/>
                         <button name="copy_course" type="object" string="Clone Course" states="finished"
                                 class="oe_highlight"/>
-<!--                        <button name="print_report" string="Print Report" type="object"-->
-<!--                                states="finished" class="oe_highlight"/>-->
+                        <button name="print_report" string="Print Report" type="object"
+                                states="finished" class="oe_highlight"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,open,finished"/>
                     </header>
                     <sheet>

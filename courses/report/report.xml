@@ -5,8 +5,8 @@
         <field name="name">Course Card</field>
         <field name="model">course.course</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">courses.report_course_card</field>
-        <field name="report_file">courses.report_course_card</field>
+        <field name="report_name">courses.report_course_template</field>
+        <field name="report_file">courses.report_course_template</field>
         <field name="binding_model_id" ref="model_course_course"/>
         <field name="binding_type">report</field>
     </record>
@@ -15,8 +15,8 @@
         <field name="name">Student Card</field>
         <field name="model">course.student</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">courses.report_student_card</field>
-        <field name="report_file">courses.report_student_card</field>
+        <field name="report_name">courses.report_student_template</field>
+        <field name="report_file">courses.report_student_template</field>
         <field name="binding_model_id" ref="model_course_student"/>
         <field name="binding_type">report</field>
     </record>

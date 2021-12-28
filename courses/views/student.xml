@@ -25,9 +25,9 @@
             <field name="model">course.student</field>
             <field name="arch" type="xml">
                 <form>
-                    <!--                    <header>-->
-                    <!--                        <button name="print_report" string="Print Report" type="object" class="oe_highlight"/>-->
-                    <!--                    </header>-->
+                    <header>
+                        <button name="print_report" string="Print Report" type="object" class="oe_highlight"/>
+                    </header>
                     <sheet>
                         <group>
                             <group>

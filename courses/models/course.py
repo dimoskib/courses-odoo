@@ -170,6 +170,9 @@ class Course(models.Model):
             else:
                 raise ValidationError(_("You have not assigned a grade for every student."))
 
+    def print_grades(self):
+        print("The grades are printed")
+
     @api.constrains('name')
     def check_name(self):
         for record in self:
@@ -183,6 +186,5 @@ class Course(models.Model):
             if (record.course_end_date - record.course_start_date).total_seconds() < 0:
                 raise ValidationError(_("The end date of %s course cannot be before the start date." % record.name))
 
-
-# def print_report(self):
-#     return self.env.ref('courses.report_course_card').report_action(self)
+    def print_report(self):
+        return self.env.ref('courses.report_course_card').report_action(self)

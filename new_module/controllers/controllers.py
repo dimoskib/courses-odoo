@@ -22,17 +22,23 @@ class AllCourses(http.Controller):
 
     @http.route('/my/my_courses', type='http', auth='public', website=True)
     def show_my_courses(self):
-        courses = http.request.env['course.course'].search([])
         users_email = request.env.user.email
         student_id = http.request.env['course.student'].search([('student_email', '=', users_email)]).id
-        html_result = '<html><body><ul>'
-        for course in courses:
-            if student_id in course.students_in_course.ids:
-                html_result += "<li> <b>%s</b> </li>" % course.name
-            else:
-                html_result += "<li> %s </li>" % course.name
-        html_result += '</ul></body></html>'
-        return html_result
+        # students_in_course = http.request.env['course.course'].search([('students_in_course', '=', student_id)])
+        courses = http.request.env['course.course'].search([('students_in_course', '=', student_id)])
+        values = {
+            'courses': courses,
+        }
+        return http.request.render('new_module.portal_my_courses', values)
+
+        # html_result = '<html><body><ul>'
+        # for course in courses:
+        #     if student_id in course.students_in_course.ids:
+        #         html_result += "<li> <b>%s</b> </li>" % course.name
+        #     else:
+        #         html_result += "<li> %s </li>" % course.name
+        # html_result += '</ul></body></html>'
+        # return html_result
 
 
 class AllTeachers(http.Controller):
