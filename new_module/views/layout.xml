@@ -6,7 +6,7 @@
         <!-- Add an element after the top menu  -->
         <xpath expr="//div[@id='wrapwrap']/header" position="before">
             <div class="container">
-                <h1 class="courses_header">Welcome to courses</h1>
+                <h1 class="courses_header text-center">Welcome to courses</h1>
             </div>
         </xpath>
     </template>

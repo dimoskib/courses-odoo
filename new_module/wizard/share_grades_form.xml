@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="share_grades_form" model="ir.ui.view">
+        <field name="name">share.grades.wizard.form</field>
+        <field name="model">course.course</field>
+        <field name="arch" type="xml">
+            <form string="Share Grades">
+                <sheet>
+                    <group>
+                        <field name="student_grades"
+                               attrs="{'readonly':[('state','in',('draft','finished'))]}">
+                            <tree create="false" delete="false">
+                                <field name="course"/>
+                                <field name="student"/>
+                                <field name="grade"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <footer states="open">
+                    <button name="send_sms" string="Submit" type="object" class="btn-primary"/>
+                    <button string="Cancel" type="object" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_share_grades" model="ir.actions.act_window">
+        <field name="name">Share Grades</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">share.grades.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="crm_lead_lost_view_form"/>
+        <field name="target">new</field>
+    </record>
+    <!--    <data>-->
+
+    <!--        <record id="insert_grades_form" model="ir.ui.view">-->
+    <!--            <field name="name">insert.grades.popup</field>-->
+    <!--            <field name="model">course.course</field>-->
+    <!--            <field name="arch" type="xml">-->
+    <!--                <form string="Insert Grades">-->
+    <!--                    <header>-->
+    <!--                        <field name="state" widget="statusbar" statusbar_visible="draft,open,finished"/>-->
+    <!--                    </header>-->
+    <!--                    <sheet>-->
+    <!--                        <group>-->
+    <!--                            <field name="student_grades"-->
+    <!--                                   attrs="{'readonly':[('state','in',('draft','finished'))]}">-->
+    <!--                                <tree create="false" delete="false">-->
+    <!--                                    <field name="course"/>-->
+    <!--                                    <field name="student"/>-->
+    <!--                                    <field name="grade"/>-->
+    <!--                                </tree>-->
+    <!--                            </field>-->
+    <!--                        </group>-->
+    <!--                    </sheet>-->
+    <!--                    <footer states="open">-->
+    <!--                        <button name="action_finished" string="Submit" type="object" class="btn-primary"/>-->
+    <!--                        <button string="Cancel" type="object" class="btn-secondary" special="cancel"/>-->
+    <!--                    </footer>-->
+    <!--                </form>-->
+    <!--            </field>-->
+    <!--        </record>-->
+
+    <!--    </data>-->
+</odoo>

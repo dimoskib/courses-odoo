@@ -25,7 +25,7 @@
         'views/options.xml',
         'views/sidebar.xml',
         'views/dynamic_snippet.xml',
-        # 'views/courses_chatter.xml',
+
     ],
     # only loaded in demonstration mode
     'demo': [

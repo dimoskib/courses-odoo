@@ -9,9 +9,9 @@
             <t t-call="portal.portal_searchbar">
                 <t t-set="title">Courses</t>
                 <t>
-                    <button model="course.student" name="print_report" string="Print Grades" type="object" class="btn-info">Print Grades
+                    <button name="print_report" string="Print Grades" type="action" class="btn-info">Print Grades
                     </button>
-                    <button name="share_grades" string="Share Grades" type="object" class="btn-info">Share Grades
+                    <button name="my_courses_page" string="Share Grades" type="action" class="btn-info">Share Grades
                     </button>
                 </t>
             </t>
@@ -30,6 +30,12 @@
                 <tbody>
                     <t t-foreach="courses" t-as="course">
                         <tr>
+                            <!--                            <td>-->
+                            <!--                                <a t-att-href="course.get_portal_url()" t-att-title="course.name">-->
+                            <!--                                    <t t-esc="course.name" t-if="course.name != '/'"/>-->
+                            <!--                                    <em t-else="">Draft Invoice</em>-->
+                            <!--                                </a>-->
+                            <!--                            </td>-->
                             <td>
                                 <span t-field="course.name"/>
                             </td>
@@ -56,27 +62,27 @@
         <field name="view_id" ref="portal_my_courses"/>
     </record>
 
-<!--    <div class="collapse navbar-collapse" id="o_portal_navbar_content">-->
-<!--        <div class="nav flex-column flex-lg-row ml-auto p-0 mb-3 mb-lg-0 mt-1 mt-lg-0">-->
-<!--            <div t-if="searchbar_groupby" class="form-inline ml-lg-2">-->
-<!--                <span class="small mr-1 navbar-text">Group By:</span>-->
-<!--                <div class="btn-group">-->
-<!--                    <button id="portal_searchbar_groupby" data-toggle="dropdown"-->
-<!--                            class="btn btn-secondary btn-sm dropdown-toggle">-->
-<!--                        <t t-esc="searchbar_groupby[groupby].get('label', 'None')"/>-->
-<!--                    </button>-->
-<!--                    <div class="dropdown-menu" aria-labelledby="portal_searchbar_groupby">-->
-<!--                        <t t-foreach="searchbar_groupby" t-as="option">-->
-<!--                            <a t-att-href="default_url + '?' + keep_query('*', groupby=option)"-->
-<!--                               t-attf-class="dropdown-item#{groupby == option and ' active' or ''}">-->
-<!--                                <span t-esc="searchbar_groupby[option].get('label')"/>-->
-<!--                            </a>-->
-<!--                        </t>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div class="collapse navbar-collapse" id="o_portal_navbar_content">-->
+    <!--        <div class="nav flex-column flex-lg-row ml-auto p-0 mb-3 mb-lg-0 mt-1 mt-lg-0">-->
+    <!--            <div t-if="searchbar_groupby" class="form-inline ml-lg-2">-->
+    <!--                <span class="small mr-1 navbar-text">Group By:</span>-->
+    <!--                <div class="btn-group">-->
+    <!--                    <button id="portal_searchbar_groupby" data-toggle="dropdown"-->
+    <!--                            class="btn btn-secondary btn-sm dropdown-toggle">-->
+    <!--                        <t t-esc="searchbar_groupby[groupby].get('label', 'None')"/>-->
+    <!--                    </button>-->
+    <!--                    <div class="dropdown-menu" aria-labelledby="portal_searchbar_groupby">-->
+    <!--                        <t t-foreach="searchbar_groupby" t-as="option">-->
+    <!--                            <a t-att-href="default_url + '?' + keep_query('*', groupby=option)"-->
+    <!--                               t-attf-class="dropdown-item#{groupby == option and ' active' or ''}">-->
+    <!--                                <span t-esc="searchbar_groupby[option].get('label')"/>-->
+    <!--                            </a>-->
+    <!--                        </t>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 
     <!-- === Courses Page === -->
     <template id="portal_all_courses" name="My Courses">

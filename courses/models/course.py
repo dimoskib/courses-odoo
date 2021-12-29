@@ -170,9 +170,6 @@ class Course(models.Model):
             else:
                 raise ValidationError(_("You have not assigned a grade for every student."))
 
-    def print_grades(self):
-        print("The grades are printed")
-
     @api.constrains('name')
     def check_name(self):
         for record in self:
